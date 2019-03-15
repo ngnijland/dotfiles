@@ -2,6 +2,8 @@
 
 This repo contains my vim setup
 
+Inspired by [Lars Hisken's dotfiles](https://github.com/larshisken/dotfiles)
+
 ## Screenshots
 
 ### Split screen view
