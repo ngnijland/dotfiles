@@ -3,6 +3,13 @@ syntax on
 set hlsearch
 
 set number
+set relativenumber
+
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
 
 call plug#begin()
 
@@ -12,8 +19,16 @@ Plug 'sheerun/vim-polyglot'
 " onedark for color theme
 Plug 'joshdick/onedark.vim'
 
+" Solarized color theme
+Plug 'lifepillar/vim-solarized8'
+
 " vim-vinegar for directory browsing inside vim
 Plug 'tpope/vim-vinegar'
+let g:netrw_keepdir = 0
+
+" Find root dir
+Plug 'airblade/vim-rooter'
+let g:rooter_manual_only = 1
 
 " Fuzzy finder
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -37,7 +52,8 @@ let g:lightline = {
 " vim-gitgutter for git diffs in files
 Plug 'airblade/vim-gitgutter'
 
-Plug 'scrooloose/nerdcommenter'
+" Comment stuff out
+Plug 'tpope/vim-commentary'
 
 " Code formatting and fixing
 Plug 'w0rp/ale'
@@ -52,8 +68,12 @@ let g:ale_lint_delay = 400
 
 call plug#end()
 
+" Background for solarized theme
+" set background=light
+
 " Color scheme
 colorscheme onedark
+" colorscheme solarized8
 
 " Enable anti alias
 set antialias
