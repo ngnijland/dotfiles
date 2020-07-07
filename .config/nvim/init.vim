@@ -87,6 +87,8 @@ let g:ale_fixers = {
 \ 'javascript': ['prettier'],
 \ 'typescript': ['prettier'],
 \ 'elixir': ['ALE_BEFORE_mix_format', 'mix_format', 'ALE_AFTER_mix_format'],
+\ 'json': ['prettier'],
+\ 'css': ['prettier'],
 \}
 let g:ale_fix_on_save = 1
 let g:ale_lint_delay = 400
