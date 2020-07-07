@@ -126,7 +126,7 @@ set completeopt-=preview
 " Code completion
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
-let g:deoplete#auto_complete_delay = 20
+let g:deoplete#auto_complete_delay = 200
 let g:deoplete#max_list = 30
 
 let g:deoplete#sources = {}
