@@ -117,6 +117,8 @@ let g:LanguageClient_serverCommands = {
 let g:LanguageClient_useFloatingHover=1
 
 nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+nnoremap <silent> D :call LanguageClient#textDocument_definition()<CR>
+nnoremap <silent> E :call LanguageClient#explainErrorAtPoint()<CR>
 nnoremap <F5> :call LanguageClient_contextMenu()<CR>
 
 set completeopt-=preview
