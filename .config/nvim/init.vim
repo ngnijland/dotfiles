@@ -141,6 +141,9 @@ let g:deoplete#enable_at_startup = 1
 autocmd FileType scheme
   \ call deoplete#custom#buffer_option('auto_complete', v:false)
 
+" Markdown preview
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
+
 call plug#end()
 
 " Background for solarized theme
