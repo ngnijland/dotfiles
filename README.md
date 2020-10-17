@@ -1,6 +1,6 @@
-# Vim setup
+# Dotfiles
 
-This repo contains my vim setup
+This repo contains files to configure my coding environment
 
 Inspired by [Lars Hisken's dotfiles](https://github.com/larshisken/dotfiles)
 
