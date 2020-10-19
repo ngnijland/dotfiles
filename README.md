@@ -1,8 +1,10 @@
 # Dotfiles
 
-This repo contains files to configure my coding environment
+This repo contains files to configure my coding environment. It contains configurations for:
 
-Inspired by [Lars Hisken's dotfiles](https://github.com/larshisken/dotfiles)
+* [tmux](https://github.com/tmux/tmux)
+* [Alacritty](https://github.com/alacritty/alacritty)
+* [nvim](https://neovim.io/)
 
 ## Screenshots
 
