@@ -17,9 +17,9 @@ window:
   #
   # Specified in number of columns/lines, not pixels.
   # If both are `0`, this setting is ignored.
-  dimensions:
-    columns: 1000
-    lines: 1000
+  # dimensions:
+  #   columns: 1000
+  #   lines: 1000
 
   # Window position (changes require restart)
   #
@@ -60,7 +60,7 @@ window:
   #
   # Values for `startup_mode` (macOS only):
   #   - SimpleFullscreen
-  #startup_mode: Windowed
+  startup_mode: Maximized
 
   # Window title
   #title: Alacritty
@@ -315,7 +315,7 @@ font:
 #background_opacity: 1.0
 
 #selection:
-  #semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
+  #semantic_escape_chars: ",‚îÇ`|:\"' ()[]{}<>\t"
 
   # When set to `true`, selected text will be copied to the primary clipboard.
   #save_to_clipboard: false
@@ -324,7 +324,7 @@ font:
   # Cursor style
   #
   # Values for `style`:
-  #   - ▇ Block
+  #   - ‚ñá Block
   #   - _ Underline
   #   - | Beam
   #style: Block
