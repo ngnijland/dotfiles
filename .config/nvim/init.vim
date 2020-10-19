@@ -116,12 +116,12 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 let g:deoplete#auto_complete_delay = 200
 let g:deoplete#max_list = 30
 
-let g:deoplete#sources = {}
-let g:deoplete#sources['elixir'] = ['alchemist']
-let g:deoplete#sources['javascript'] = ['LanguageClient_neovim']
-let g:deoplete#sources['javascript.tsx'] = ['LanguageClient_neovim']
-let g:deoplete#sources['typescript'] = ['LanguageClient_neovim']
-let g:deoplete#sources['typescript.tsx'] = ['LanguageClient_neovim']
+let g:deoplete#option = {}
+let g:deoplete#option['elixir'] = ['alchemist']
+let g:deoplete#option['javascript'] = ['LanguageClient_neovim']
+let g:deoplete#option['javascript.tsx'] = ['LanguageClient_neovim']
+let g:deoplete#option['typescript'] = ['LanguageClient_neovim']
+let g:deoplete#option['typescript.tsx'] = ['LanguageClient_neovim']
 
 let g:deoplete#enable_at_startup = 1
 
