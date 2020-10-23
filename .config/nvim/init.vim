@@ -23,6 +23,17 @@ let g:netrw_localrmdir='rm -r'
 Plug 'airblade/vim-rooter'
 let g:rooter_manual_only = 1
 
+" Fuzzy finder
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+command! ProjectFiles exe 'Files ' . FindRootDirectory()
+nnoremap <leader>p :ProjectFiles <enter>
+
+" Make sure ag ignores file names
+command! -bang -nargs=* Ag
+      \ call fzf#vim#ag(<q-args>,
+      \ {'options': '--delimiter : --nth 4..'}, <bang>0)
+
 " status line
 Plug 'itchyny/lightline.vim'
 set laststatus=2
