@@ -6,102 +6,6 @@ set number
 set relativenumber
 
 call plug#begin()
-
-" Syntax highlighting
-Plug 'sheerun/vim-polyglot'
-Plug 'peitalin/vim-jsx-typescript'
-
-" Color theme
-Plug 'joshdick/onedark.vim'
-
-" vim-vinegar for directory browsing inside vim
-Plug 'tpope/vim-vinegar'
-let g:netrw_keepdir = 0
-let g:netrw_localrmdir='rm -r'
-
-" Find root dir
-Plug 'airblade/vim-rooter'
-let g:rooter_manual_only = 1
-
-" Fuzzy finder
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
-command! ProjectFiles exe 'Files ' . FindRootDirectory()
-nnoremap <leader>p :ProjectFiles <enter>
-
-" Make sure ag ignores file names
-command! -bang -nargs=* Ag
-      \ call fzf#vim#ag(<q-args>,
-      \ {'options': '--delimiter : --nth 4..'}, <bang>0)
-
-" status line
-Plug 'itchyny/lightline.vim'
-set laststatus=2
-set noshowmode
-let g:lightline = {
-  \ 'colorscheme': 'onedark',
-  \ }
-
-" Explore current project root
-command! ProjectExplore exe 'Explore ' . FindRootDirectory()
-nnoremap <leader>- :ProjectExplore <enter>
-
-" vim-gitgutter for git diffs in files
-Plug 'airblade/vim-gitgutter'
-
-" Comment stuff out
-Plug 'tpope/vim-commentary'
-
-" Elixir specifics
-Plug 'slashmili/alchemist.vim'
-let g:alchemist_tag_disable = 1
-
-" Elixir specifics
-Plug 'slashmili/alchemist.vim'
-let g:alchemist_tag_disable = 1
-
-" ALE configuration {{{1
-
-" You have to use formatter from the root of the elixir project
-" or to be precise from the folder where .formatter.exs file exist.
-" Otherwise, formatter dependencies will not be used.
-
-" Change working directory to directory where .formatter.exs exists, upwards.
-fun! ALE_BEFORE_mix_format(bufnr)
-	" find path of the .formatter.exs upwards from the current file
-	let path = fnamemodify(findfile(".formatter.exs", expand("%:p:h").";"), ":p:h")
-	exe 'lcd '. path
-endfu
-
-" Change working directory to directory of the current file
-fun! ALE_AFTER_mix_format(bufnr)
-	lcd %:p:h
-endfu
-
-" Code formatting and fixing
-Plug 'w0rp/ale'
-
-let g:ale_linters = {}
-let g:ale_linters.elixir = ['credo']
-let g:ale_linters.javascript = ['eslint']
-let g:ale_linters['javascript.jsx'] = ['eslint']
-let g:ale_linters.typescript = ['eslint', 'tslint']
-let g:ale_linters['typescript.tsx'] = ['eslint', 'tslint']
-
-let g:ale_fixers = {}
-let g:ale_fixers['*'] = ['remove_trailing_lines', 'trim_whitespace']
-let g:ale_fixers.elixir = ['ALE_BEFORE_mix_format', 'mix_format', 'ALE_AFTER_mix_format']
-let g:ale_fixers.javascript = ['prettier']
-let g:ale_fixers['javascript.jsx'] = ['prettier']
-let g:ale_fixers.typescript = ['prettier']
-let g:ale_fixers['typescript.tsx'] = ['prettier']
-let g:ale_fixers.json = ['prettier']
-let g:ale_fixers.css = ['prettier']
-
-let g:ale_linters_explicit = 1
-let g:ale_fix_on_save = 1
-let g:ale_lint_delay = 700
-
 " Language client
 Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
@@ -111,8 +15,9 @@ Plug 'autozimu/LanguageClient-neovim', {
 let g:LanguageClient_serverCommands = {
     \ 'javascript': ['typescript-language-server',  '--stdio'],
     \ 'javascript.jsx': ['typescript-language-server',  '--stdio'],
+    \ 'javascriptreact': ['typescript-language-server',  '--stdio'],
     \ 'typescript': ['typescript-language-server',  '--stdio'],
-    \ 'typescript.tsx': ['typescript-language-server',  '--stdio'],
+    \ 'typescriptreact': ['typescript-language-server',  '--stdio'],
     \ }
 
 let g:LanguageClient_useFloatingHover=1
@@ -124,8 +29,6 @@ set completeopt-=preview
 
 " Code completion
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-let g:deoplete#auto_complete_delay = 200
-let g:deoplete#max_list = 30
 
 let g:deoplete#option = {}
 let g:deoplete#option['elixir'] = ['alchemist']
@@ -138,21 +41,99 @@ let g:deoplete#enable_at_startup = 1
 
 autocmd FileType scheme
   \ call deoplete#custom#buffer_option('auto_complete', v:false)
+  \ call deoplete#custom#option({
+  \ 'auto_complete_delay': 200,
+  \ 'max_list': 30,
+  \ })
 
 " Use tab for autocomplete
 Plug 'ervandew/supertab'
 let g:SuperTabDefaultCompletionType = "<c-n>"
 
+
+" Syntax highlighting
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
+" vim-vinegar for directory browsing inside vim
+Plug 'tpope/vim-vinegar'
+let g:netrw_keepdir = 0
+let g:netrw_localrmdir='rm -r'
+
+" Find root dir
+Plug 'airblade/vim-rooter'
+let g:rooter_manual_only = 1
+
+" Explore current project root
+command! ProjectExplore exe 'Explore ' . FindRootDirectory()
+nnoremap <leader>- :ProjectExplore <enter>
+
+" Fuzzy finder
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+command! ProjectFiles exe 'Files ' . FindRootDirectory()
+nnoremap <leader>p :ProjectFiles <enter>
+
+" Make sure ag ignores file names
+command! -bang -nargs=* Ag
+      \ call fzf#vim#ag(<q-args>,
+      \ {'options': '--delimiter : --nth 4..'}, <bang>0)
+
+" Code formatting and fixing
+Plug 'w0rp/ale'
+
+let g:ale_linters = {}
+let g:ale_linters.javascript = ['eslint']
+let g:ale_linters['javascript.jsx'] = ['eslint']
+let g:ale_linters.javascriptreact = ['eslint']
+let g:ale_linters.typescript = ['eslint', 'tslint']
+let g:ale_linters['typescript.tsx'] = ['eslint', 'tslint']
+let g:ale_linters.typescriptreact = ['eslint', 'tslint']
+
+let g:ale_fixers = {}
+let g:ale_fixers['*'] = ['remove_trailing_lines', 'trim_whitespace']
+let g:ale_fixers.javascript = ['prettier']
+let g:ale_fixers['javascript.jsx'] = ['prettier']
+let g:ale_fixers.javascriptreact = ['prettier']
+let g:ale_fixers.typescript = ['prettier']
+let g:ale_fixers['typescript.tsx'] = ['prettier']
+let g:ale_fixers.typescriptreact = ['prettier']
+let g:ale_fixers.json = ['prettier']
+let g:ale_fixers.css = ['prettier']
+let g:ale_fixers.scss = ['prettier']
+
+let g:ale_linters_explicit = 1
+let g:ale_fix_on_save = 1
+let g:ale_lint_delay = 700
+
+" Color theme
+Plug 'joshdick/onedark.vim'
+
+" status line
+Plug 'itchyny/lightline.vim'
+set laststatus=2
+set noshowmode
+let g:lightline = {
+  \ 'colorscheme': 'onedark',
+  \ }
+
+" vim-gitgutter for git diffs in files
+Plug 'airblade/vim-gitgutter'
+
 " Git wrapper
 Plug 'tpope/vim-fugitive'
 
-" Markdown preview
-Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
+" Comment stuff out
+Plug 'tpope/vim-commentary'
 
+" Code stats
+Plug 'wakatime/vim-wakatime'
 call plug#end()
+
 
 " Color scheme
 colorscheme onedark
+
+set completeopt-=preview
 
 " Expand tabs to spaces
 set expandtab
