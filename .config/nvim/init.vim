@@ -125,11 +125,6 @@ Plug 'tpope/vim-fugitive'
 " Comment stuff out
 Plug 'tpope/vim-commentary'
 
-" Code stats
-Plug 'wakatime/vim-wakatime'
-call plug#end()
-
-
 " Color scheme
 colorscheme onedark
 
