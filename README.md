@@ -2,9 +2,12 @@
 
 This repo contains files to configure my coding environment. It contains configurations for:
 
-* [tmux](https://github.com/tmux/tmux)
-* [Alacritty](https://github.com/alacritty/alacritty)
-* [nvim](https://neovim.io/)
+- [tmux](https://github.com/tmux/tmux)
+- [Alacritty](https://github.com/alacritty/alacritty)
+- [nvim](https://neovim.io/)
+- [coc.nvim](https://github.com/neoclide/coc.nvim)
+
+For syntax highlighting I use [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter).
 
 ## Screenshots
 

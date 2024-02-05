@@ -1,0 +1,16 @@
+{
+  "suggest.maxCompleteItemCount": 30,
+  "eslint.autoFixOnSave": true,
+  "coc.preferences.formatOnSave": true,
+  "diagnostic.virtualText": true,
+  "diagnostic.virtualTextCurrentLineOnly": false,
+  "languageserver": {
+    "kotlin": {
+      "command": "~/.lsp/kotlin/server/bin/kotlin-language-server",
+      "filetypes": ["kotlin"]
+    }
+  },
+  "[yaml]": {
+    "coc.preferences.formatOnSave": false
+  }
+}
