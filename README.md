@@ -13,8 +13,8 @@ For syntax highlighting I use [nvim-treesitter](https://github.com/nvim-treesitt
 
 ### Split screen view
 
-![vim editor](https://raw.githubusercontent.com/ngnijland/vim-setup/master/img/vim-editor.png)
+![vim editor](https://raw.githubusercontent.com/ngnijland/dotfiles/master/img/vim-editor.png)
 
 ### File browsing
 
-![vim file browsing](https://raw.githubusercontent.com/ngnijland/vim-setup/master/img/vim-vinegar-browsing.png)
+![vim file browsing](https://raw.githubusercontent.com/ngnijland/dotfiles/master/img/vim-vinegar-browsing.png)
